@@ -192,11 +192,11 @@ class AllListing extends Element {
 
 		$query->addCustomControl( Container::get_listing_items( 'ids', $this ), 'ids' );
 
-		$query->addCustomControl( Container::get_categories_control( 'category', $this ), 'category' );
+		$query->addCustomControl( Container::get_categories_control( 'categories', $this ), 'categories' );
 
-		$query->addCustomControl( Container::get_tags_control( 'tag', $this ), 'tag' );
+		$query->addCustomControl( Container::get_tags_control( 'tags', $this ), 'tags' );
 
-		$query->addCustomControl( Container::get_location_control( 'location', $this ), 'location' );
+		$query->addCustomControl( Container::get_location_control( 'locations', $this ), 'locations' );
 	}
 
 	protected function remapShortcodeAttributes( array $attributes = array() ) {
@@ -209,9 +209,9 @@ class AllListing extends Element {
 			'show_pagination',
 			'header',
 			'header_title',
-			'category',
-			'location',
-			'tag',
+			'categories',
+			'locations',
+			'tags',
 			'ids',
 			'columns',
 			'featured_only',
@@ -227,10 +227,22 @@ class AllListing extends Element {
 		);
 
 		$attributes = array_intersect_key( $attributes, array_flip( $supportedAttributes ) );
+		$alternativeKeys = [
+			'categories' => 'category',
+			'tags'       => 'tag',
+			'locations'  => 'location'
+		];
 
-		foreach ( ['category', 'tag', 'location', 'ids'] as $comma_separable_field ) {
-			if ( isset( $attributes[ $comma_separable_field ] ) ) {
-				$attributes[ $comma_separable_field ] = implode( ',', $attributes[ $comma_separable_field ] );
+		foreach ( ['categories', 'tags', 'locations', 'ids'] as $comma_separable_field ) {
+			if ( empty( $attributes[ $comma_separable_field ] ) ) {
+				continue;
+			}
+
+			$attributes[ $comma_separable_field ] = implode( ',', $attributes[ $comma_separable_field ] );
+
+			if ( ! empty( $alternativeKeys[ $comma_separable_field ] ) ) {
+				$attributes[ $alternativeKeys[ $comma_separable_field ] ] = $attributes[ $comma_separable_field ];
+				unset( $attributes[ $comma_separable_field ] );
 			}
 
 			unset( $comma_separable_field );
