@@ -12,8 +12,8 @@ function oxygen_init() {
     }
 
     include_once __DIR__ . '/class-element.php';
-    include_once __DIR__ . '/class-manager.php';
+    include_once __DIR__ . '/class-container.php';
 
-    Manager::instance();
+    Container::instance();
 }
-add_action( 'plugins_loaded', __NAMESPACE__ . '\oxygen_init' );
+add_action( 'init', __NAMESPACE__ . '\oxygen_init' );

@@ -186,9 +186,57 @@ class AllListing extends Element {
 				'type'    => 'buttons-list',
 				'name'    => __( 'Order', 'directorist' ),
 				'slug'    => 'order',
-				'default' => 'DESC',
+				'default' => 'desc',
 			)
-		)->setValue( array( 'ASC', 'DESC' ) );
+		)->setValue( array( 'asc', 'desc' ) );
+
+		$query->addCustomControl( Container::get_listing_items( 'ids', $this ), 'ids' );
+
+		$query->addCustomControl( Container::get_categories_control( 'category', $this ), 'category' );
+
+		$query->addCustomControl( Container::get_tags_control( 'tag', $this ), 'tag' );
+
+		$query->addCustomControl( Container::get_location_control( 'location', $this ), 'location' );
+	}
+
+	protected function remapShortcodeAttributes( array $attributes = array() ) {
+		$supportedAttributes = array(
+			'view',
+			'filterby',
+			'orderby',
+			'order',
+			'listings_per_page',
+			'show_pagination',
+			'header',
+			'header_title',
+			'category',
+			'location',
+			'tag',
+			'ids',
+			'columns',
+			'featured_only',
+			'popular_only',
+			'advanced_filter',
+			'display_preview_image',
+			'action_before_after_loop',
+			'logged_in_user_only',
+			'map_height',
+			'map_zoom_level',
+			'directory_type',
+			'default_directory_type'
+		);
+
+		$attributes = array_intersect_key( $attributes, array_flip( $supportedAttributes ) );
+
+		foreach ( ['category', 'tag', 'location', 'ids'] as $comma_separable_field ) {
+			if ( isset( $attributes[ $comma_separable_field ] ) ) {
+				$attributes[ $comma_separable_field ] = implode( ',', $attributes[ $comma_separable_field ] );
+			}
+
+			unset( $comma_separable_field );
+		}
+
+		return $attributes;
 	}
 }
 

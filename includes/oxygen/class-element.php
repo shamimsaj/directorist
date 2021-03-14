@@ -37,8 +37,13 @@ class Element extends OxyEl {
 
 	public function render( $options, $defaults, $content ) {
 		$shortcode = str_replace( '-', '_', $this->slug() );
+		$attributes = array();
 
-		echo $this->doShortcodeCallback( $shortcode, array(), $content );
+		if ( method_exists( $this, 'remapShortcodeAttributes' ) ) {
+			$attributes = $this->remapShortcodeAttributes( $options );
+		}
+
+		echo $this->doShortcodeCallback( $shortcode, $attributes, $content );
 	}
 
 	/**
