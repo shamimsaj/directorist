@@ -474,7 +474,8 @@ final class Directorist_Base
             ATBDP_INC_DIR . 'custom-actions',
             ATBDP_INC_DIR . 'custom-filters',
             ATBDP_INC_DIR . 'elementor/init',
-            ATBDP_INC_DIR . 'system-status/class-system-status'
+            ATBDP_INC_DIR . 'system-status/class-system-status',
+            ATBDP_INC_DIR . 'oxygen/init',
         ]);
 
         load_dependencies('all', ATBDP_INC_DIR . 'data-store/');
