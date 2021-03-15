@@ -10,7 +10,27 @@ defined( 'ABSPATH' ) || die();
 
 use OxyEl;
 
+/**
+ * === Development Notes ===
+ * 1. we can use `rebuildElementOnChange()` method to update the view real time on settings change.
+ * 2. `addCustomControl()` adds the html inside a wrapper which is already exists in html hence we experience extra spacing.
+ */
+
+/**
+ * Base class for Directorist elements.
+ */
 class Element extends OxyEl {
+
+	/**
+	 * Process shortcode params from controls.
+	 * 
+	 * This flag helps to process controls automatically.
+	 * 
+	 * @see ->render()
+	 *
+	 * @var bool
+	 */
+	protected $shouldProcessParams = false;
 
 	public function controls() {}
 
@@ -37,13 +57,40 @@ class Element extends OxyEl {
 
 	public function render( $options, $defaults, $content ) {
 		$shortcode = str_replace( '-', '_', $this->slug() );
-		$attributes = array();
+		
+		echo $this->doShortcodeCallback(
+			$shortcode,
+			$this->processShortcodeParams( $options ),
+			$content
+		);
+	}
 
-		if ( method_exists( $this, 'remapShortcodeAttributes' ) ) {
-			$attributes = $this->remapShortcodeAttributes( $options );
+	protected function processShortcodeParams( $options ) {
+		$params = array();
+
+		if ( empty( $this->shouldProcessParams ) ) {
+			return $params;
 		}
 
-		echo $this->doShortcodeCallback( $shortcode, $attributes, $content );
+		$validParams = array_filter( array_keys( $options ), function( $key ) {
+			return strpos( $key, 'drst_' ) !== false;
+		} );
+
+		$params = array_intersect_key( $options, array_flip( $validParams ) );
+
+		$validParams = array_map( function( $validParam ) {
+			return substr( $validParam, strlen( 'drst_' ) );
+		}, $validParams );
+
+		$params = array_combine( $validParams, $params );
+
+		if ( method_exists( $this, 'remapShortcodeParams' ) ) {
+			$params = $this->remapShortcodeParams( $params );
+		}
+
+		unset( $validParams );
+
+		return $params;
 	}
 
 	/**

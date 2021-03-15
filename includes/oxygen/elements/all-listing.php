@@ -8,6 +8,8 @@ namespace wpWax\Directorist\Oxygen;
 
 class AllListing extends Element {
 
+	protected $shouldProcessParams = true;
+
 	public function name() {
 		return esc_html__( 'All Listing', 'directorist' );
 	}
@@ -26,7 +28,7 @@ class AllListing extends Element {
 			array(
 				'type'  => 'dropdown',
 				'name'  => __( 'View', 'directorist' ),
-				'slug'  => 'view',
+				'slug'  => 'drst_view',
 				'default' => 'grid',
 				'value' => array(
 					'grid' => __( 'Grid', 'directorist' ),
@@ -40,7 +42,7 @@ class AllListing extends Element {
 			array(
 				'type'  => 'dropdown',
 				'name'  => __( 'Columns', 'directorist' ),
-				'slug'  => 'columns',
+				'slug'  => 'drst_columns',
 				'default' => '3',
 				'value' => array(
 					'1' => __( '1 Column', 'directorist' ),
@@ -56,7 +58,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Show Pagination?', 'directorist' ),
-				'slug'    => 'show_pagination',
+				'slug'    => 'drst_show_pagination',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -65,7 +67,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Show Featured Only?', 'directorist' ),
-				'slug'    => 'featured_only',
+				'slug'    => 'drst_featured_only',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -74,7 +76,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Show Header?', 'directorist' ),
-				'slug'    => 'header',
+				'slug'    => 'drst_header',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -83,8 +85,8 @@ class AllListing extends Element {
 			array(
 				'type'      => 'textfield',
 				'name'      => __( 'Header Title', 'directorist' ),
-				'slug'      => 'header_title',
-				'condition' => 'header=yes'
+				'slug'      => 'drst_header_title',
+				'condition' => 'drst_header=yes'
 			)
 		);
 
@@ -92,7 +94,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Show Popular Only?', 'directorist' ),
-				'slug'    => 'popular_only',
+				'slug'    => 'drst_popular_only',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -101,7 +103,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Show Filter Button?', 'directorist' ),
-				'slug'    => 'advanced_filter',
+				'slug'    => 'drst_advanced_filter',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -110,7 +112,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Show Preview Image?', 'directorist' ),
-				'slug'    => 'display_preview_image',
+				'slug'    => 'drst_display_preview_image',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -119,7 +121,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Enable Before After Hook?', 'directorist' ),
-				'slug'    => 'action_before_after_loop',
+				'slug'    => 'drst_action_before_after_loop',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -128,7 +130,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Logged In User Only?', 'directorist' ),
-				'slug'    => 'logged_in_user_only',
+				'slug'    => 'drst_logged_in_user_only',
 				'default' => 'no'
 			)
 		)->setValue( array( 'yes', 'no' ) );
@@ -137,9 +139,9 @@ class AllListing extends Element {
 			array(
 				'type'      => 'textfield',
 				'name'      => __( 'Map Height', 'directorist' ),
-				'slug'      => 'map_height',
+				'slug'      => 'drst_map_height',
 				'default'   => 500,
-				'condition' => 'view=map'
+				'condition' => 'drst_view=map'
 			)
 		);
 
@@ -147,8 +149,8 @@ class AllListing extends Element {
 			array(
 				'type'      => 'textfield',
 				'name'      => __( 'Map Zoom Level', 'directorist' ),
-				'slug'      => 'map_zoom_level',
-				'condition' => 'view=map'
+				'slug'      => 'drst_map_zoom_level',
+				'condition' => 'drst_view=map'
 			)
 		);
 
@@ -161,7 +163,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'textfield',
 				'name'    => __( 'Number Of Listing', 'directorist' ),
-				'slug'    => 'listings_per_page',
+				'slug'    => 'drst_listings_per_page',
 				'default' => 6
 			)
 		);
@@ -170,7 +172,7 @@ class AllListing extends Element {
 			array(
 				'type'    => 'dropdown',
 				'name'    => __( 'Order By', 'directorist' ),
-				'slug'    => 'orderby',
+				'slug'    => 'drst_orderby',
 				'default' => 'date',
 				'value' => array(
 					'title' => __( 'Title', 'directorist' ),
@@ -185,70 +187,31 @@ class AllListing extends Element {
 			array(
 				'type'    => 'buttons-list',
 				'name'    => __( 'Order', 'directorist' ),
-				'slug'    => 'order',
+				'slug'    => 'drst_order',
 				'default' => 'desc',
 			)
 		)->setValue( array( 'asc', 'desc' ) );
 
-		$query->addCustomControl( Container::get_listing_items( 'ids', $this ), 'ids' );
+		$query->addCustomControl( Container::get_listing_items( 'drst_ids', $this ), 'drst_ids' );
 
-		$query->addCustomControl( Container::get_categories_control( 'categories', $this ), 'categories' );
+		$query->addCustomControl( Container::get_categories_control( 'drst_category', $this ), 'drst_category' );
 
-		$query->addCustomControl( Container::get_tags_control( 'tags', $this ), 'tags' );
+		$query->addCustomControl( Container::get_tags_control( 'drst_tag', $this ), 'drst_tag' );
 
-		$query->addCustomControl( Container::get_location_control( 'locations', $this ), 'locations' );
+		$query->addCustomControl( Container::get_location_control( 'drst_location', $this ), 'drst_location' );
 	}
 
-	protected function remapShortcodeAttributes( array $attributes = array() ) {
-		$supportedAttributes = array(
-			'view',
-			'filterby',
-			'orderby',
-			'order',
-			'listings_per_page',
-			'show_pagination',
-			'header',
-			'header_title',
-			'categories',
-			'locations',
-			'tags',
-			'ids',
-			'columns',
-			'featured_only',
-			'popular_only',
-			'advanced_filter',
-			'display_preview_image',
-			'action_before_after_loop',
-			'logged_in_user_only',
-			'map_height',
-			'map_zoom_level',
-			'directory_type',
-			'default_directory_type'
-		);
-
-		$attributes = array_intersect_key( $attributes, array_flip( $supportedAttributes ) );
-		$alternativeKeys = [
-			'categories' => 'category',
-			'tags'       => 'tag',
-			'locations'  => 'location'
-		];
-
-		foreach ( ['categories', 'tags', 'locations', 'ids'] as $comma_separable_field ) {
-			if ( empty( $attributes[ $comma_separable_field ] ) ) {
+	protected function remapShortcodeParams( array $params = array() ) {
+		foreach ( [ 'category', 'tag', 'location', 'ids' ] as $comma_separable_field ) {
+			if ( empty( $params[ $comma_separable_field ] ) ) {
 				continue;
 			}
 
-			$attributes[ $comma_separable_field ] = implode( ',', $attributes[ $comma_separable_field ] );
-
-			if ( ! empty( $alternativeKeys[ $comma_separable_field ] ) ) {
-				$attributes[ $alternativeKeys[ $comma_separable_field ] ] = $attributes[ $comma_separable_field ];
-				unset( $attributes[ $comma_separable_field ] );
-			}
-
+			$params[ $comma_separable_field ] = implode( ',', $params[ $comma_separable_field ] );
 			unset( $comma_separable_field );
 		}
 
-		return $attributes;
+		return $params;
 	}
 }
 
