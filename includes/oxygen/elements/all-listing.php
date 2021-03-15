@@ -183,7 +183,7 @@ class AllListing extends Element {
 				)
 			)
 		);
-
+		
 		$query->addOptionControl(
 			array(
 				'type'    => 'buttons-list',
