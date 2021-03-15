@@ -88,6 +88,15 @@ class AllLocations extends Element {
 		)->setValue( array( 'asc', 'desc' ) );
 
 		$settings->addCustomControl( Container::get_locations_control( 'drst_slug', $this ), 'drst_slug' );
+
+		$settings->addOptionControl(
+			array(
+				'type'    => 'buttons-list',
+				'name'    => __( 'Logged In User Only?', 'directorist' ),
+				'slug'    => 'drst_logged_in_user_only',
+				'default' => 'no'
+			)
+		)->setValue( array( 'yes', 'no' ) );
 	}
 
 	protected function remapShortcodeParams( array $params = array() ) {
