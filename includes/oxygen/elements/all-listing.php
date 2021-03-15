@@ -47,9 +47,9 @@ class AllListing extends Element {
 				'value' => array(
 					'1' => __( '1 Column', 'directorist' ),
 					'2' => __( '2 Columns', 'directorist' ),
-					'3'  => __( '3 Columns', 'directorist' ),
-					'4'  => __( '4 Columns', 'directorist' ),
-					'6'  => __( '6 Columns', 'directorist' ),
+					'3' => __( '3 Columns', 'directorist' ),
+					'4' => __( '4 Columns', 'directorist' ),
+					'6' => __( '6 Columns', 'directorist' ),
 				),
 				'condition' => 'drst_view=grid'
 			)
@@ -199,7 +199,7 @@ class AllListing extends Element {
 
 		$query->addCustomControl( Container::get_tags_control( 'drst_tag', $this ), 'drst_tag' );
 
-		$query->addCustomControl( Container::get_location_control( 'drst_location', $this ), 'drst_location' );
+		$query->addCustomControl( Container::get_locations_control( 'drst_location', $this ), 'drst_location' );
 	}
 
 	protected function remapShortcodeParams( array $params = array() ) {

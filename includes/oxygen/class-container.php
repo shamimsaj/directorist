@@ -50,6 +50,9 @@ class Container {
 		include_once 'elements/category.php';
 		include_once 'elements/location.php';
 		include_once 'elements/tag.php';
+
+		include_once 'elements/all-categories.php';
+		include_once 'elements/all-locations.php';
 	}
 
 	/**
@@ -107,7 +110,7 @@ class Container {
 		return self::get_custom_select2_html( $args, $element );
 	}
 
-	public static function get_location_control( $controlId, Element $element ) {
+	public static function get_locations_control( $controlId, Element $element ) {
 		$args = array(
 			'name'        => __( 'Locations', 'directorist' ),
 			'slug'        => $controlId,
