@@ -54,6 +54,7 @@ class Container {
 		include_once 'elements/all-locations.php';
 		include_once 'elements/author-profile.php';
 		include_once 'elements/search-listing.php';
+		include_once 'elements/search-result.php';
 	}
 
 	/**
