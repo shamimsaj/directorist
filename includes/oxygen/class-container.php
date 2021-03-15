@@ -50,9 +50,9 @@ class Container {
 		include_once 'elements/category.php';
 		include_once 'elements/location.php';
 		include_once 'elements/tag.php';
-
 		include_once 'elements/all-categories.php';
 		include_once 'elements/all-locations.php';
+		include_once 'elements/author-profile.php';
 	}
 
 	/**
