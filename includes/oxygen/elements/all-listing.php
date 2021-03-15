@@ -22,7 +22,7 @@ class AllListing extends Element {
 		/**
 		 * Layout section
 		 */
-		$layout = $this->addControlSection( 'layout', __( 'Layout' ), 'assets/icon.png', $this );
+		$layout = $this->addControlSection( 'layout', __( 'Layout', 'directorist' ), 'assets/icon.png', $this );
 
 		$layout->addOptionControl(
 			array(
@@ -50,7 +50,8 @@ class AllListing extends Element {
 					'3'  => __( '3 Columns', 'directorist' ),
 					'4'  => __( '4 Columns', 'directorist' ),
 					'6'  => __( '6 Columns', 'directorist' ),
-				)
+				),
+				'condition' => 'drst_view=grid'
 			)
 		);
 

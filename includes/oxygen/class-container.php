@@ -47,6 +47,9 @@ class Container {
 
 		// elements with controls
 		include_once 'elements/all-listing.php';
+		include_once 'elements/category.php';
+		include_once 'elements/location.php';
+		include_once 'elements/tag.php';
 	}
 
 	/**
