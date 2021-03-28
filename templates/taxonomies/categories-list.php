@@ -45,7 +45,7 @@ $columns = floor( 12 / $taxonomy->columns );
     ?>
 
 <!-- Category style 03 -->
-<!-- <div class="directorist-category-child">
+<div class="directorist-category-child">
 		<div class="directorist-row">
 			<div class="directorist-col-lg-3 directorist-col-md-4 directorist-col-sm-6">
 				<div class="directorist-category-child__card">
@@ -80,5 +80,5 @@ $columns = floor( 12 / $taxonomy->columns );
 				</div>
 			</div>
 		</div>
-	</div> -->
+	</div>
 </div>
